@@ -1,0 +1,41 @@
+#! /usr/bin/env node
+const config = require('config')
+
+/* eslint-disable global-require */
+function start() {
+  const figlet = require('figlet')
+  const pkg = require('../package')
+
+  process.stdout.write('\n')
+  process.stdout.write(`${figlet.textSync(`Bank API ${config.program}`, { font: 'Ogre' })}\n`)
+  process.stdout.write('\n')
+  process.stdout.write(
+    `Version: ${pkg.version}, Environment: ${process.env.NODE_ENV || 'default'}\n`,
+  )
+  process.stdout.write('\n')
+  process.stdout.write('\n')
+
+  let program = null
+  const configProgram = config.program.toLowerCase()
+
+  if (configProgram === 'scheduler') {
+    program = require('../scheduler')
+  } else {
+    program = require('../')
+  }
+
+  program
+    .start()
+    .then((result) => {
+      program.logger.info(`BankApi ${configProgram} server started`)
+      program.logger.info(`Environment ${process.env.NODE_ENV || 'default'}`)
+      if (result && result.url) {
+        program.logger.info(`Listening for HTTP requests at ${result.url}`)
+      }
+    })
+    .catch((err) => {
+      program.logger.error(`Failed to start BankApi ${configProgram} server`, err)
+    })
+}
+
+start()

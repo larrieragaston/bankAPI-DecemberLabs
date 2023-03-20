@@ -1,0 +1,22 @@
+#! /usr/bin/env node
+
+const figlet = require('figlet')
+const pkg = require('../package')
+
+process.stdout.write('\n')
+process.stdout.write(`${figlet.textSync('BankAPI Scheduler', { font: 'Ogre' })}\n`)
+process.stdout.write('\n')
+process.stdout.write(`Version: ${pkg.version}, Environment: ${process.env.NODE_ENV || 'default'}\n`)
+process.stdout.write('\n')
+process.stdout.write('\n')
+
+const scheduler = require('../scheduler')
+
+scheduler
+  .start()
+  .then(() => {
+    scheduler.logger.info('BankAPI scheduler instance created and started')
+  })
+  .catch((err) => {
+    scheduler.logger.error('Failed to start BankAPI scheduler', err)
+  })

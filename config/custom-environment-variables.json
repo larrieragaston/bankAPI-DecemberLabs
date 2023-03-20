@@ -1,0 +1,26 @@
+{
+  "auth": {
+    "key": "AUTH_KEY"
+  },
+
+  "program": "PROGRAM",
+
+  "mongo": {
+    "db": "MONGO_DB",
+    "url": "MONGO_URL",
+    "certificate": "MONGO_CERTIFICATE"
+  },
+
+  "logger": {
+    "sentry": {
+      "dsn": "LOGGER_SENTRY_DSN"
+    },
+    "console": {
+      "level": "LOGGER_CONSOLE_LEVEL"
+    }
+  },
+
+  "apiFixer": {
+    "apiKey": "API_FIXER_KEY"
+  }
+}

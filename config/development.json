@@ -1,0 +1,45 @@
+{
+  "env": "development",
+  "program": "api",
+
+  "server": {
+    "url": "",
+    "maxResultsLimit": 1000
+  },
+
+  "auth": {
+    "token": {
+      "issuer": "BankApi",
+      "algorithm": "RS256"
+    },
+    "key": "bank-api-local",
+    "passwordTtl": 3600
+  },
+
+  "rateLimit": {
+    "window": "1m",
+    "requests": 1000
+  },
+
+  "mongo": {
+    "db": "bank-api",
+    "url": "mongodb://localhost/bank-api"
+  },
+
+  "logger": {
+    "sentry": {
+      "dsn": ""
+    },
+    "console": {
+      "level": "debug",
+      "timestamp": true,
+      "handleExceptions": true,
+      "humanReadableUnhandledException": true,
+      "colorize": true
+    }
+  },
+
+  "fixerAPI": {
+    "apiKey": "rmipUu68oZ25VD30HJWh7SfOxRfqVu9o"
+  }
+}
